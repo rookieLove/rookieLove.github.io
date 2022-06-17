@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>MogDB-server环境搭建 | 我的实习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="所需依赖安装包openGauss-third-party-binarylibs 第三方库MogDB-server 服务器 安装步骤 环境变量设置在&#x2F;home&#x2F;Dai&#x2F;.bashrc中添加如下命令123456789export BINARYLIBS&#x3D;&#x2F;data&#x2F;Dai&#x2F;openGauss-third_party_binarylibsexport GAUSSHOME&#x3D;&#x2F;data&#x2F;Dai&#x2F;mogdbex">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MogDB-server环境搭建">
+<meta property="og:url" content="http://example.com/2022/06/14/day2/index.html">
+<meta property="og:site_name" content="我的实习">
+<meta property="og:description" content="所需依赖安装包openGauss-third-party-binarylibs 第三方库MogDB-server 服务器 安装步骤 环境变量设置在&#x2F;home&#x2F;Dai&#x2F;.bashrc中添加如下命令123456789export BINARYLIBS&#x3D;&#x2F;data&#x2F;Dai&#x2F;openGauss-third_party_binarylibsexport GAUSSHOME&#x3D;&#x2F;data&#x2F;Dai&#x2F;mogdbex">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-14T08:21:54.141Z">
+<meta property="article:modified_time" content="2022-06-15T09:29:06.150Z">
+<meta property="article:author" content="Rookie Dai">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的实习" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的实习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-day2" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/14/day2/" class="article-date">
+  <time class="dt-published" datetime="2022-06-14T08:21:54.141Z" itemprop="datePublished">2022-06-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      MogDB-server环境搭建
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="所需依赖安装包"><a href="#所需依赖安装包" class="headerlink" title="所需依赖安装包"></a>所需依赖安装包</h3><p>openGauss-third-party-binarylibs 第三方库<br>MogDB-server 服务器</p>
+<h3 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h3><ol>
+<li>环境变量设置<br>在<code>/home/Dai/.bashrc</code>中添加如下命令<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> BINARYLIBS=/data/Dai/openGauss-third_party_binarylibs</span><br><span class="line"><span class="built_in">export</span> GAUSSHOME=/data/Dai/mogdb</span><br><span class="line"><span class="built_in">export</span> GCC_PATH=<span class="variable">$BINARYLIBS</span>/buildtools/openeuler_aarch64/gcc7.3/</span><br><span class="line"><span class="built_in">export</span> CC=<span class="variable">$GCC_PATH</span>/gcc/bin/gcc</span><br><span class="line"><span class="built_in">export</span> CXX=<span class="variable">$GCC_PATH</span>/gcc/bin/g++</span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=<span class="variable">$GAUSSHOME</span>/lib:<span class="variable">$GCC_PATH</span>/gcc/lib64:<span class="variable">$GCC_PATH</span>/isl/lib:<span class="variable">$GCC_PATH</span>/mpc/lib/:<span class="variable">$GCC_PATH</span>/mpfr/lib/:<span class="variable">$GCC_PATH</span>/gmp/lib/:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$GAUSSHOME</span>/bin:<span class="variable">$GCC_PATH</span>/gcc/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> PGPORT=4096</span><br><span class="line"><span class="built_in">export</span> PGTEMPPORT=4096 </span><br></pre></td></tr></table></figure></li>
+<li>编译配置<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">./configure --gcc-version=7.3.0 CC=g++ CFLAGS=<span class="string">&#x27;-O0&#x27;</span> --prefix=<span class="variable">$GAUSSHOME</span> </span><br><span class="line">--3rd=<span class="variable">$BINARYLIBS</span> --enable-debug --enable-cassert </span><br><span class="line">--enable-thread-safety --with-readline --without-zlib</span><br></pre></td></tr></table></figure></li>
+<li>编译安装<br><code>make -j8</code><br><code>make install</code><br><strong>注意:清理编译</strong><br><code>make distclean</code></li>
+</ol>
+<h3 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h3><ol>
+<li><p>初始化<br><code>gs_initdb -D /home/Dai/data --nodename=mogdb </code></p>
+</li>
+<li><p>启动和终止<br><code>gs_ctl start -D /home/Dai/data</code><br><code>gs_ctl stop -D /home/Dao/date</code></p>
+</li>
+<li><p>查看相关进程<br><code>ps -ef | grep Dai | grep -v grep | grep mogdb</code></p>
+</li>
+<li><p>日志存放位置<br><code>/home/Dai/data/log_file</code></p>
+</li>
+<li><p>连接postgres<br><code>gsql -d postgres -r</code>  </p>
+</li>
+<li><p>运行测试<br>在MogDB-server&#x2F;src&#x2F;test&#x2F;regress下运行<br> <code>make fastcheck_single</code><br>单个测试：<br> <code>./pg_regress -p 4096 hw_partition_hash_dml</code></p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/14/day2/" data-id="cl4i2l0u300017kvaf0jw6ykn" data-title="MogDB-server环境搭建" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/16/day3/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          (no title)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/06/13/day1/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">First Blog</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/16/day3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/day2/">MogDB-server环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/13/day1/">First Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Rookie Dai<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

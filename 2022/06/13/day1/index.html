@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>First Blog | 我的实习</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="通信过程主线程GuassMaster 负责监听指定IP端口处的连接请求   每监听到连接请求，Guassmaster就会生成一个服务器线程，   服务器线程之间借助信号量和共享内存通信   处理请求的模块postmaster：前端程序把启动信息发送给postmaster,   其根据启动信息    SQL引擎SQL引擎是数据库的核心子系统，其中优化器是SQL引擎的核心模块，被称之为数据库的大脑">
+<meta property="og:type" content="article">
+<meta property="og:title" content="First Blog">
+<meta property="og:url" content="http://example.com/2022/06/13/day1/index.html">
+<meta property="og:site_name" content="我的实习">
+<meta property="og:description" content="通信过程主线程GuassMaster 负责监听指定IP端口处的连接请求   每监听到连接请求，Guassmaster就会生成一个服务器线程，   服务器线程之间借助信号量和共享内存通信   处理请求的模块postmaster：前端程序把启动信息发送给postmaster,   其根据启动信息    SQL引擎SQL引擎是数据库的核心子系统，其中优化器是SQL引擎的核心模块，被称之为数据库的大脑">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-06-13T06:42:34.099Z">
+<meta property="article:modified_time" content="2022-06-15T09:24:06.877Z">
+<meta property="article:author" content="Rookie Dai">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="我的实习" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">我的实习</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-day1" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/06/13/day1/" class="article-date">
+  <time class="dt-published" datetime="2022-06-13T06:42:34.099Z" itemprop="datePublished">2022-06-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      First Blog
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="通信过程"><a href="#通信过程" class="headerlink" title="通信过程"></a>通信过程</h3><pre><code>主线程GuassMaster 负责监听指定IP端口处的连接请求  
+每监听到连接请求，Guassmaster就会生成一个服务器线程，  
+服务器线程之间借助信号量和共享内存通信  
+处理请求的模块postmaster：前端程序把启动信息发送给postmaster,  
+其根据启动信息  
+</code></pre>
+<h3 id="SQL引擎"><a href="#SQL引擎" class="headerlink" title="SQL引擎"></a>SQL引擎</h3><pre><code>SQL引擎是数据库的核心子系统，其中优化器是SQL引擎的核心模块，被称之为数据库的大脑  
+*查询-解析器*--parser
+
+*SQL查询-分流*-- traffic cop 流量监督 /openGauss-server/src/include/tcop
+     1.软解析(旧查询)当openguass共享缓冲区中存在SQL语句的已解析形式，则可以避免再次执行语法和语义检查
+     2.硬解析(新查询)缓存语句不存在或者首次将该SQL语句加载到opennguass共享区中，同时当，语句老化时，也
+     也需要重新加载
+
+*查询-重写* -- rewriter
+     1.常量表达式化简
+     2.子查询化简
+     3.谓词下推
+
+*查询-优化器* -- optimizer -- 找出最佳的执行计划
+    当连接数超过阈值时，采用遗传查询优化器，查询计划过程一般与路径一起使用，二者是可以类比的概念
+
+*查询-执行器* -- executor
+    递归执行计划
+</code></pre>
+<h3 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h3><pre><code>1.要解决的问题：
+    原子性、一致性、隔离性、持久性
+    高并发、高性能
+    高效存储和检索
+2.opengauss存储引擎类型
+    行存储引擎
+    列存储引擎
+    内存引擎
+</code></pre>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/06/13/day1/" data-id="cl4i2l0tw00007kva2p0if1hw" data-title="First Blog" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/06/14/day2/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MogDB-server环境搭建
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/06/16/day3/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/14/day2/">MogDB-server环境搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2022/06/13/day1/">First Blog</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 Rookie Dai<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
