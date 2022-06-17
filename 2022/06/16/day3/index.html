@@ -24,7 +24,7 @@
 <meta property="og:image" content="c:/Users/24738/Desktop/xrxn3dbdgn.png">
 <meta property="og:image" content="c:/Users/24738/Desktop/事务提交.png">
 <meta property="article:published_time" content="2022-06-16T00:47:14.553Z">
-<meta property="article:modified_time" content="2022-06-17T07:05:38.460Z">
+<meta property="article:modified_time" content="2022-06-17T07:14:31.615Z">
 <meta property="article:author" content="Rookie Dai">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="d:/Myblog/source/_posts/day3/3iscgyhlff.png">
@@ -113,7 +113,12 @@
 | Storage | Page write request   Page read request| Write result   Page content| 持久化的数据存储 |						
 | Catalog | N/A | N/A | 保存表定义，表统计信息，用户权限定义等 |
 
-<h4 id="parser"><a href="#parser" class="headerlink" title="parser"></a>parser</h4><p><code>select * from t where c1 = 1000;</code><br><img src="D:\Myblog\source\_posts\day3\gbldzafq1p.png" alt="图片替换文本" width="1017" height="527" align="bottom"/></p>
+<h4 id="parser"><a href="#parser" class="headerlink" title="parser"></a>parser</h4><p><code>select * from t where c1 = 1000;</code></p>
+
+
+
+<img src="D:\Myblog\source\_posts\day3\gbldzafq1p.png" alt="图片替换文本" width="1017" height="527" align="bottom"/>
+
 <h4 id="Rewrite"><a href="#Rewrite" class="headerlink" title="Rewrite"></a>Rewrite</h4><p>Rewrite重写负责的任务包括：<br>1). 检查解析树合法性<br>2). 根据元数据扩展补充解析树<br>3). 规则性等价改写解析树(优化)</p>
 <h4 id="Optimizer"><a href="#Optimizer" class="headerlink" title="Optimizer"></a>Optimizer</h4><p>优化器是一个复杂并精巧的模块，它负责的任务仅一项：<br>将<strong>解析树</strong>表达的访问请求转换成<strong>执行计划（Query Plan）</strong>。<br>该执行计划可直接被<strong>Runtime</strong>运行（类似照方抓药，Runtime不再考虑药用来解决什么问题），<br>优化体现在，生成的执行计划是在有限时间内优化器考察的所有可能执行计划中<strong>最优</strong>的。</p>
 <p><code>SELECT c1, c2 from T where c1 = 10;</code></p>
@@ -248,7 +253,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/16/day3/" data-id="cl4i3x6ux0002egva3kp337ig" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/06/16/day3/" data-id="cl4i48rs60002nova6upp38qv" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -257,6 +262,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2022/06/17/test/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          test
+        
+      </div>
+    </a>
   
   
     <a href="/2022/06/14/day2/" id="article-nav-older" class="article-nav-link-wrap">
@@ -297,6 +311,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/06/17/test/">test</a>
+          </li>
         
           <li>
             <a href="/2022/06/16/day3/">(no title)</a>
