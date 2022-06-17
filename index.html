@@ -90,7 +90,7 @@
 <li>conceptual schema: 表示对外呈现的概念性数据定义，用户可以修改概念定义通过SQL实现数据访问需求  </li>
 <li>physical schema: 表示物理数据定义，也即实际数据分别存放的位置</li>
 </ol>
-<h3 id="关系型数据库SQL处理流程"><a href="#关系型数据库SQL处理流程" class="headerlink" title="关系型数据库SQL处理流程"></a>关系型数据库SQL处理流程</h3><img src="C:\Users\24738\Desktop\3iscgyhlff.png" alt="图片替换文本" width="945" height="215" align="bottom"/>
+<h3 id="关系型数据库SQL处理流程"><a href="#关系型数据库SQL处理流程" class="headerlink" title="关系型数据库SQL处理流程"></a>关系型数据库SQL处理流程</h3><img src="D:\Myblog\source\_posts\day3\3iscgyhlff.png" alt="图片替换文本" width="945" height="215" align="bottom"/>
 | 构成元件 | 输入 | 输出 | 函数 |
 | -------- | ---- | ----- | ---- |
 | Parser(解析器) | parse tree | parse tree | 
@@ -100,7 +100,7 @@
 | Storage | Page write request   Page read request| Write result   Page content| 持久化的数据存储 |						
 | Catalog | N/A | N/A | 保存表定义，表统计信息，用户权限定义等 |
 
-<h4 id="parser"><a href="#parser" class="headerlink" title="parser"></a>parser</h4><p><code>select * from t where c1 = 1000;</code><br><img src="C:\Users\24738\Desktop\gbldzafq1p.png" alt="图片替换文本" width="1017" height="527" align="bottom"/></p>
+<h4 id="parser"><a href="#parser" class="headerlink" title="parser"></a>parser</h4><p><code>select * from t where c1 = 1000;</code><br><img src="D:\Myblog\source\_posts\day3\gbldzafq1p.png" alt="图片替换文本" width="1017" height="527" align="bottom"/></p>
 <h4 id="Rewrite"><a href="#Rewrite" class="headerlink" title="Rewrite"></a>Rewrite</h4><p>Rewrite重写负责的任务包括：<br>1). 检查解析树合法性<br>2). 根据元数据扩展补充解析树<br>3). 规则性等价改写解析树(优化)</p>
 <h4 id="Optimizer"><a href="#Optimizer" class="headerlink" title="Optimizer"></a>Optimizer</h4><p>优化器是一个复杂并精巧的模块，它负责的任务仅一项：<br>将<strong>解析树</strong>表达的访问请求转换成<strong>执行计划（Query Plan）</strong>。<br>该执行计划可直接被<strong>Runtime</strong>运行（类似照方抓药，Runtime不再考虑药用来解决什么问题），<br>优化体现在，生成的执行计划是在有限时间内优化器考察的所有可能执行计划中<strong>最优</strong>的。</p>
 <p><code>SELECT c1, c2 from T where c1 = 10;</code></p>
@@ -235,7 +235,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/16/day3/" data-id="cl4i2l0u500027kvabhtmgtto" data-title="" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/06/16/day3/" data-id="cl4i3x6ux0002egva3kp337ig" data-title="" class="article-share-link">Share</a>
       
       
       
@@ -293,7 +293,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/14/day2/" data-id="cl4i2l0u300017kvaf0jw6ykn" data-title="MogDB-server环境搭建" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/06/14/day2/" data-id="cl4i3x6uv0001egvag4foej44" data-title="MogDB-server环境搭建" class="article-share-link">Share</a>
       
       
       
@@ -365,7 +365,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/06/13/day1/" data-id="cl4i2l0tw00007kva2p0if1hw" data-title="First Blog" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/06/13/day1/" data-id="cl4i3x6ur0000egvaa4vkbh1r" data-title="First Blog" class="article-share-link">Share</a>
       
       
       
